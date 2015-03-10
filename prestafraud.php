@@ -143,7 +143,7 @@ class PrestaFraud extends Module
 				$(\'#submitCreateAccount\').unbind(\'click\').click(function() {
 					if (!$(\'#terms_and_conditions\').attr(\'checked\'))
 					{
-						alert(\''.$this->l('Please accept the terms of service.').'\');
+						alert(\''.addslashes($this->l('Please accept the terms of service.')).'\');
 						return false;
 					}
 				});										
