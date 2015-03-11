@@ -328,8 +328,9 @@ class PrestaFraud extends Module
 	
 	public function hookNewOrder($params)
 	{
-		if (!Configuration::get('PS_SHOP_ENABLE') OR !Configuration::get('PS_TRUST_SHOP_ID') OR !Configuration::get('PS_TRUST_SHOP_KEY'))
+		if (!Configuration::get('PS_TRUST_SHOP_ID') OR !Configuration::get('PS_TRUST_SHOP_KEY'))
 			return;
+
 		$customer = new Customer((int)$params['order']->id_customer);
 		
 		$address_delivery = new Address((int)$params['order']->id_address_delivery);
