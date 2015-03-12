@@ -273,9 +273,9 @@ class PrestaFraud extends Module
 		}
 		elseif (Tools::isSubmit('submitCreateAccount'))
 		{
-			if (!$email = Tools::getValue('email') || !Validate::isEmail($email))
+			if (!Validate::isEmail($email = Tools::getValue('email')))
 				$this->_errors[] = $this->l('Email is invalid');
-			if (!$shop_url = Tools::getValue('shop_url') || !Validate::isAbsoluteUrl($shop_url))
+			if (!Validate::isAbsoluteUrl($shop_url = Tools::getValue('shop_url')))
 				$this->_errors[] = $this->l('Shop URL is invalid');
 
 			if (!count($this->_errors))
@@ -296,9 +296,6 @@ class PrestaFraud extends Module
 	
 	public function _createAccount($email, $shop_url)
 	{
-		if (!Validate::isEmail($email) || !Validate::isAbsoluteUrl($shop_url))
-			return false;
-
 		$root = new SimpleXMLElement("<?xml version=\"1.0\"?><fraud_monitor></fraud_monitor>");
 		$xml = $root->addChild('create_account');
 		$xml->addChild('email', $email);
