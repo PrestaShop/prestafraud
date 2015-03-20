@@ -432,11 +432,15 @@ class PrestaFraud extends Module
 		$order->addChild('order_ip_address', $this->_getIpByCart((int)$params['order']->id_cart));
 
 		$carrier = new Carrier((int)$params['order']->id_carrier);
-		$carrier_infos = $order->addChild('carrier_infos');
-		$carrier_infos->addChild('name', $carrier->name);
-		$carriers_type = $this->_getConfiguredCarriers();
+		if (Validate::isLoadedObject($carrier))
+		{
+			$carrier_infos = $order->addChild('carrier_infos');
+			$carrier_infos->addChild('name', $carrier->name);
+			$carriers_type = $this->_getConfiguredCarriers();
+	
+			$carrier_infos->addChild('type', $carriers_type[$carrier->id]);
+		}
 
-		$carrier_infos->addChild('type', $carriers_type[$carrier->id]);
 		if ($this->_pushDatas($root->asXml()) !== false)
 		{
 			if (!Configuration::get('PRESTAFRAUD_CONFIGURATION_OK'))
