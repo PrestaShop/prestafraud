@@ -436,7 +436,7 @@ class PrestaFraud extends Module
 		$carrier_infos->addChild('name', $carrier->name);
 		$carriers_type = $this->_getConfiguredCarriers();
 
-		$carrier_infos->addChild('type', $carriers_type[$carrier->id]);
+		$carrier_infos->addChild('type', isset($carriers_type[$carrier->id]) ? $carriers_type[$carrier->id] : 0);
 		if ($this->_pushDatas($root->asXml()) !== false)
 		{
 			if (!Configuration::get('PRESTAFRAUD_CONFIGURATION_OK'))
