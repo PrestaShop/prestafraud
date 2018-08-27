@@ -304,7 +304,7 @@ class PrestaFraud extends Module
 
 		if ($result == 'nok' || !($xml_result = simplexml_load_string($result)))
 		{
-			$this->_errors[] = $this->l('Impossible to create a new account, please report this bug on http://forge.prestashop.com/');
+			$this->_errors[] = $this->l('Impossible to create a new account, please report this bug on https://github.com/PrestaShop/PrestaShop/issues');
 			return false;
 		}
 		if (!(int)$xml_result->create_account->result)
