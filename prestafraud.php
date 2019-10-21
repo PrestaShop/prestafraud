@@ -49,39 +49,39 @@ class PrestaFraud extends Module
 
         parent::__construct();
 
-        $this->displayName = $this->l('PrestaShop Security');
-        $this->description = $this->l('Protect your store from fraudulent payments');
+        $this->displayName = $this->trans('PrestaShop Security', array(), 'Modules.Prestafraud.Admin');
+        $this->description = $this->trans('Because your business needs to be protected, keep an eye on risky orders to make it grow peacefully.', array(), 'Modules.Prestafraud.Admin');
 
         $this->_activities = array(
-            0 => $this->l('-- Please choose your main activity --'),
-            1 => $this->l('Adult'),
-            2 => $this->l('Animals and Pets'),
-            3 => $this->l('Art and Culture'),
-            4 => $this->l('Babies'),
-            5 => $this->l('Beauty and Personal Care'),
-            6 => $this->l('Cars'),
-            7 => $this->l('Computer Hardware and Software'),
-            8 => $this->l('Download'),
-            9 => $this->l('Fashion and accessories'),
-            10 => $this->l('Flowers, Gifts and Crafts'),
-            11 => $this->l('Food and beverage'),
-            12 => $this->l('HiFi, Photo and Video'),
-            13 => $this->l('Home and Garden'),
-            14 => $this->l('Home Appliances'),
-            15 => $this->l('Jewelry'),
-            16 => $this->l('Mobile and Telecom'),
-            17 => $this->l('Services'),
-            18 => $this->l('Shoes and accessories'),
-            19 => $this->l('Sport and Entertainment'),
-            20 => $this->l('Travel'),
+            0 => $this->trans('-- Please choose your main activity --', array(), 'Modules.Prestafraud.Admin'),
+            1 => $this->trans('Adult', array(), 'Admin.Global'),
+            2 => $this->trans('Animals and Pets', array(), 'Admin.Global'),
+            3 => $this->trans('Art and Culture', array(), 'Admin.Global'),
+            4 => $this->trans('Babies', array(), 'Admin.Global'),
+            5 => $this->trans('Beauty and Personal Care', array(), 'Admin.Global'),
+            6 => $this->trans('Cars', array(), 'Admin.Global'),
+            7 => $this->trans('Computer Hardware and Software', array(), 'Admin.Global'),
+            8 => $this->trans('Download', array(), 'Admin.Global'),
+            9 => $this->trans('Fashion and accessories', array(), 'Admin.Global'),
+            10 => $this->trans('Flowers, Gifts and Crafts', array(), 'Admin.Global'),
+            11 => $this->trans('Food and beverage', array(), 'Admin.Global'),
+            12 => $this->trans('HiFi, Photo and Video', array(), 'Admin.Global'),
+            13 => $this->trans('Home and Garden', array(), 'Admin.Global'),
+            14 => $this->trans('Home Appliances', array(), 'Admin.Global'),
+            15 => $this->trans('Jewelry', array(), 'Admin.Global'),
+            16 => $this->trans('Mobile and Telecom', array(), 'Admin.Global'),
+            17 => $this->trans('Services', array(), 'Admin.Global'),
+            18 => $this->trans('Shoes and accessories', array(), 'Admin.Global'),
+            19 => $this->trans('Sport and Entertainment', array(), 'Admin.Global'),
+            20 => $this->trans('Travel', array(), 'Admin.Global'),
         );
 
         $this->_payment_types = array(
-            0 => $this->l('Cheque'),
-            1 => $this->l('Bankwire'),
-            2 => $this->l('Credit card'),
-            3 => $this->l('Credit card multiple'),
-            4 => $this->l('Prepaid account (MoneyBookers, PayPal...)'),
+            0 => $this->trans('Check', array(), 'Admin.Global'),
+            1 => $this->trans('Bank wire', array(), 'Admin.Global'),
+            2 => $this->trans('Credit card', array(), 'Admin.Global'),
+            3 => $this->trans('Credit card multiple', array(), 'Admin.Global'),
+            4 => $this->trans('Other payment method', array(), 'Admin.Global'),
         );
 
         $this->_trustUrl = 'http'.(extension_loaded('openssl') ? 's' : '').'://trust.prestashop.com/';
@@ -152,25 +152,25 @@ class PrestaFraud extends Module
             $(document).ready(function() {
                 $(\'#submitCreateAccount\').unbind(\'click\').click(function() {
                     if (!$(\'#terms_and_conditions\').attr(\'checked\')) {
-                        alert(\''.addslashes($this->l('Please accept the terms of service.')).'\');
+                        alert(\''.addslashes($this->trans('Please accept the terms of service.', array(), 'Modules.Prestafraud.Admin')).'\');
                         return false;
                     }
                 });										
             });
         </script>
-        <fieldset><legend>'.$this->l('PrestaShop Security configuration').'</legend>
+        <fieldset><legend>'.$this->trans('PrestaShop Security configuration', array(), 'Modules.Prestafraud.Admin').'</legend>
             <div id="choose_account">
                 <center>
                 <form>
                     <input type="radio" '.(!Configuration::get(
                 'PS_TRUST_SHOP_ID'
-            ) ? 'checked="checked"' : '').' onclick="$(\'#create_account\').show(); $(\'#module_configuration\').hide();" id="trust_account_on" name="trust_account" value="0"/> <b>'.$this->l(
-                'My shop does not have a PrestaShop Security account yet'
+            ) ? 'checked="checked"' : '').' onclick="$(\'#create_account\').show(); $(\'#module_configuration\').hide();" id="trust_account_on" name="trust_account" value="0"/> <b>'.$this->trans(
+                'My shop does not have a PrestaShop Security account yet', array(), 'Modules.Prestafraud.Admin'
             ).'</b>&nbsp;&nbsp;&nbsp;
                     <input type="radio" '.(Configuration::get(
                 'PS_TRUST_SHOP_ID'
-            ) ? 'checked="checked"' : '').' onclick="$(\'#create_account\').hide(); $(\'#module_configuration\').show();"  id="trust_account_off" name="trust_account" value="1" /> <b>'.$this->l(
-                'I already have an account'
+            ) ? 'checked="checked"' : '').' onclick="$(\'#create_account\').hide(); $(\'#module_configuration\').show();"  id="trust_account_off" name="trust_account" value="1" /> <b>'.$this->trans(
+                'I already have an account', array(), 'Modules.Prestafraud.Admin'
             ).'</b>
                 </form>
                 </center>
@@ -178,20 +178,20 @@ class PrestaFraud extends Module
             <div class="clear">&nbsp;</div>
             <div id="create_account" '.(Configuration::get('PS_TRUST_SHOP_ID') ? 'style="display:none;"' : '').'>
                 <form action="'.Tools::htmlentitiesUTF8($_SERVER['REQUEST_URI']).'" method="post" name="prestashop_trust" id="prestashop_trust">
-                    <label>'.$this->l('Your email').'</label>
+                    <label>'.$this->trans('Email address', array(), 'Admin.Global').'</label>
                     <div class="margin-form">
                         <input type="text" style="width:200px;" name="email" value="'.Tools::safeOutput(
                 Tools::getValue('email')
             ).'" />
                     </div>
-                    <label>'.$this->l('Shop Url').'</label>
+                    <label>'.$this->trans('Shop URL', array(), 'Admin.Advparameters.Feature').'</label>
                     <div class="margin-form">
                         <input type="text" style="width:400px;" name="shop_url" value="http://www.'.Tools::getHttpHost(
             ).__PS_BASE_URI__.'"/>
                     </div>
                     <div class="margin-form">
-                        <input id="terms_and_conditions" type="checkbox" value="1" /> '.$this->l(
-                'I agree with the terms of PrestaShop Security service and I adhere to them unconditionally.'
+                        <input id="terms_and_conditions" type="checkbox" value="1" /> '.$this->trans(
+                'I agree with the terms of PrestaShop Security service and I adhere to them unconditionally.', array(), 'Modules.Prestafraud.Admin'
             ).'</label>
                     </div>
                     <div id="terms" class="margin-form">';
@@ -201,8 +201,8 @@ class PrestaFraud extends Module
             ).'</div>';
         $this->_html .= '</div>
                     <div class="margin-form">
-                        <input class="button" type="submit" id="submitCreateAccount" name="submitCreateAccount" value="'.$this->l(
-                'Create account'
+                        <input class="button" type="submit" id="submitCreateAccount" name="submitCreateAccount" value="'.$this->trans(
+                'Create an account', array(), 'Modules.Prestafraud.Admin'
             ).'"/>
                     </div>
                 </form>
@@ -210,20 +210,20 @@ class PrestaFraud extends Module
             </div>
             <div id="module_configuration" '.(!Configuration::get('PS_TRUST_SHOP_ID') ? 'style="display:none"' : '').'>
             <form action="'.Tools::htmlentitiesUTF8($_SERVER['REQUEST_URI']).'" method="post" name="prestashop_trust" id="prestashop_trust">
-                <label>'.$this->l('Shop ID').'</label>
+                <label>'.$this->trans('Shop ID', array(), 'Admin.Global').'</label>
                 <div class="margin-form">
                     <input type="text" style="width:150px"  name="shop_id" value="'.Configuration::get(
                 'PS_TRUST_SHOP_ID'
             ).'"/>
                 </div>
-                <label>'.$this->l('Shop KEY').'</label>
+                <label>'.$this->trans('Shop KEY', array(), 'Admin.Global').'</label>
                 <div class="margin-form">
                     <input type="text" style="width:300px" name="shop_key" value="'.Configuration::get(
                 'PS_TRUST_SHOP_KEY'
             ).'"/>
                 </div>
                 <div class="clear">&nbsp;</div>
-                <label>'.$this->l('Shop activity').'</label>
+                <label>'.$this->trans('Shop activity', array(), 'Admin.Global').'</label>
                 <div class="margin-form">
                     <select name="shop_activity">';
         foreach ($this->_activities as $k => $activity) {
@@ -239,16 +239,16 @@ class PrestaFraud extends Module
         $configured_carriers = $this->_getConfiguredCarriers();
 
         $this->_html .= '
-                <label>'.$this->l('Carriers').'</label>
+                <label>'.$this->trans('Carriers', array(), 'Admin.Global').'</label>
                 <div class="margin-form">
                     <table cellspacing="0" cellpadding="0" class="table">
-                        <thead><tr><th>'.$this->l('Carrier').'</th><th>'.$this->l(
-                'Carrier Type'
+                        <thead><tr><th>'.$this->trans('Carrier', array(), 'Admin.Global').'</th><th>'.$this->trans(
+                'Transit time', array(), 'Admin.Global'
             ).'</th></tr></thead><tbody>';
 
         foreach ($carriers as $carrier) {
             $this->_html .= '<tr><td>'.$carrier['name'].'</td><td><select name="carrier_'.$carrier['id_carrier'].'">
-            <option value="0">'.$this->l('Choose a carrier type...').'</option>';
+            <option value="0">'.$this->trans('Select a transit time...', array(), 'Admin.Actions').'</option>';
             foreach ($this->_getPrestaTrustCarriersType() as $type => $name) {
                 $this->_html .= '<option value="'.$type.'"'.((isset($configured_carriers[$carrier['id_carrier']]) and $type == $configured_carriers[$carrier['id_carrier']]) ? ' selected="selected"' : '').'>'.$name.'</option>';
             }
@@ -260,17 +260,17 @@ class PrestaFraud extends Module
         $configured_payments = $this->_getConfiguredPayments();
 
         $this->_html .= '
-                <label>'.$this->l('Payments').'</label>
+                <label>'.$this->trans('Payments', array(), 'Admin.Global').'</label>
                 <div class="margin-form">
                     <table cellspacing="0" cellpadding="0" class="table">
-                        <thead><tr><th>'.$this->l('Payment Module').'</th><th>'.$this->l(
-                'Payment Type'
+                        <thead><tr><th>'.$this->trans('Payment module', array(), 'Admin.Global').'</th><th>'.$this->trans(
+                'Payment method', array(), 'Admin.Global'
             ).'</th></tr></thead><tbody>';
 
         foreach ($modules as $module) {
             $mod = Module::getInstanceByName($module['name']);
             $this->_html .= '<tr><td>'.$mod->displayName.'</td><td><select name="paymentmodule_'.$mod->id.'">
-            <option value="0">'.$this->l('Choose a payment type...').'</option>';
+            <option value="0">'.$this->trans('Select a payment method...', array(), 'Admin.Actions').'</option>';
             foreach ($this->_payment_types as $type => $name) {
                 $this->_html .= '<option value="'.$type.'"'.((isset($configured_payments[$mod->id]) and $type == $configured_payments[$mod->id]) ? ' selected="true"' : '').'>'.$name.'</option>';
             }
@@ -278,7 +278,7 @@ class PrestaFraud extends Module
         }
         $this->_html .= '</tbody></table></margin>
             </div>';
-        $this->_html .= '<center><input type="submit" name="submitSettings" value="'.$this->l('Save').'" class="button" /></center>
+        $this->_html .= '<center><input type="submit" name="submitSettings" value="'.$this->trans('Save', array(), 'Admin.Actions').'" class="button" /></center>
         </form>
         </div>
         </fieldset>';
@@ -311,10 +311,10 @@ class PrestaFraud extends Module
             $this->_setPaymentsConfiguration($payments_configuration);
         } elseif (Tools::isSubmit('submitCreateAccount')) {
             if (!Validate::isEmail($email = Tools::getValue('email'))) {
-                $this->_errors[] = $this->l('Email is invalid');
+                $this->_errors[] = $this->trans('Email address is invalid', array(), 'Modules.Prestafraud.Admin');
             }
             if (!Validate::isAbsoluteUrl($shop_url = Tools::getValue('shop_url'))) {
-                $this->_errors[] = $this->l('Shop URL is invalid');
+                $this->_errors[] = $this->trans('Shop URL is invalid', array(), 'Modules.Prestafraud.Admin');
             }
 
             if (!count($this->_errors)) {
@@ -342,8 +342,8 @@ class PrestaFraud extends Module
         $result = $this->_pushDatas($root->asXml());
 
         if ($result == 'nok' || !($xml_result = simplexml_load_string($result))) {
-            $this->_errors[] = $this->l(
-                'Impossible to create a new account, please report this bug on https://github.com/PrestaShop/PrestaShop/issues'
+            $this->_errors[] = $this->trans(
+                'Impossible to create a new account, please report this bug on https://github.com/PrestaShop/PrestaShop/issues', array(), 'Modules.Prestafraud.Admin'
             );
             return false;
         }
@@ -589,19 +589,19 @@ class PrestaFraud extends Module
         $id_order = Db::getInstance()->getValue(
             'SELECT id_order FROM '._DB_PREFIX_.'prestafraud_orders WHERE id_order = '.(int) $params['id_order']
         );
-        $this->_html .= '<br /><fieldset><legend>'.$this->l('PrestaShop Security').'</legend>';
+        $this->_html .= '<br /><fieldset><legend>'.$this->trans('PrestaShop Security', array(), 'Modules.Prestafraud.Admin').'</legend>';
         if (!$id_order) {
-            $this->_html .= $this->l('This order has not been sent to PrestaShop Security.');
+            $this->_html .= $this->trans('This order has not been sent to PrestaShop Security.', array(), 'Modules.Prestafraud.Admin');
         } else {
             $scoring = $this->_getScoring((int) $id_order, $this->context->language->id);
-            $this->_html .= '<p><b>'.$this->l('Scoring:').'</b> '.($scoring['scoring'] < 0 ? $this->l(
-                    'Unknown'
+            $this->_html .= '<p><b>'.$this->trans('Scoring:', array(), 'Modules.Prestafraud.Admin').'</b> '.($scoring['scoring'] < 0 ? $this->trans(
+                    'Unknown', array(), 'Admin.Global'
                 ) : (float) $scoring['scoring']).'</p>
-            <p><b>'.$this->l('Comment:').'</b> '.htmlentities($scoring['comment']).'</p>
+            <p><b>'.$this->trans('Comment:', array(), 'Modules.Prestafraud.Admin').'</b> '.htmlentities($scoring['comment']).'</p>
             <p><center><a target="_BLANK" href="'.$this->_trustUrl.'fraud_report.php?shop_id='.Configuration::get(
                     'PS_TRUST_SHOP_ID'
-                ).'&shop_key='.Configuration::get('PS_TRUST_SHOP_KEY').'&order_id='.$id_order.'">'.$this->l(
-                    'Report this order as a fraud to PrestaShop'
+                ).'&shop_key='.Configuration::get('PS_TRUST_SHOP_KEY').'&order_id='.$id_order.'">'.$this->trans(
+                    'Report this order as a fraud to PrestaShop', array(), 'Modules.Prestafraud.Admin'
                 ).'</a></center></p>';
         }
         $this->_html .= '</fieldset>';
@@ -645,10 +645,10 @@ class PrestaFraud extends Module
     private function _getPrestaTrustCarriersType()
     {
         return array(
-            '1' => $this->l('Pick up in-store'),
-            '2' => $this->l('Withdrawal point'),
-            '3' => $this->l('Slow shipping more than 3 days'),
-            '4' => $this->l('Shipping express'),
+            '1' => $this->trans('Pick up in-store', array(), 'Admin.Global'),
+            '2' => $this->trans('Withdrawal point', array(), 'Admin.Global'),
+            '3' => $this->trans('Slow shipping more than 3 days', array(), 'Admin.Global'),
+            '4' => $this->trans('Shipping express', array(), 'Admin.Global'),
         );
     }
 
