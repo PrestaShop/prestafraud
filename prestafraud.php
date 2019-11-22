@@ -62,7 +62,7 @@ class PrestaFraud extends Module
             6 => $this->trans('Cars', array(), 'Admin.Global'),
             7 => $this->trans('Computer Hardware and Software', array(), 'Admin.Global'),
             8 => $this->trans('Download', array(), 'Admin.Global'),
-            9 => $this->trans('Fashion and accessories', array(), 'Admin.Global'),
+            9 => $this->trans('Fashion and Accessories', array(), 'Admin.Global'),
             10 => $this->trans('Flowers, Gifts and Crafts', array(), 'Admin.Global'),
             11 => $this->trans('Food and beverage', array(), 'Admin.Global'),
             12 => $this->trans('HiFi, Photo and Video', array(), 'Admin.Global'),
