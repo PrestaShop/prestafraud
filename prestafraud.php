@@ -71,7 +71,7 @@ class PrestaFraud extends Module
             15 => $this->trans('Jewelry', array(), 'Admin.Global'),
             16 => $this->trans('Mobile and Telecom', array(), 'Admin.Global'),
             17 => $this->trans('Services', array(), 'Admin.Global'),
-            18 => $this->trans('Shoes and accessories', array(), 'Admin.Global'),
+            18 => $this->trans('Shoes and Accessories', array(), 'Admin.Global'),
             19 => $this->trans('Sport and Entertainment', array(), 'Admin.Global'),
             20 => $this->trans('Travel', array(), 'Admin.Global'),
         );
