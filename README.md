@@ -2,7 +2,7 @@
 
 ## About
 
-Protect your store from fraudulent payments
+Protect your business, get help to make it grow peacefully and keep an eye on risky orders.
 
 ## Reporting issues
 
