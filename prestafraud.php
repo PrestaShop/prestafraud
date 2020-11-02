@@ -50,7 +50,7 @@ class PrestaFraud extends Module
         parent::__construct();
 
         $this->displayName = $this->trans('PrestaShop Security', array(), 'Modules.Prestafraud.Admin');
-        $this->description = $this->trans('Because your business needs to be protected, keep an eye on risky orders to make it grow peacefully.', array(), 'Modules.Prestafraud.Admin');
+        $this->description = $this->trans('Protect your business, get help to make it grow peacefully and keep an eye on risky orders.', array(), 'Modules.Prestafraud.Admin');
 
         $this->_activities = array(
             0 => $this->trans('-- Please choose your main activity --', array(), 'Modules.Prestafraud.Admin'),
